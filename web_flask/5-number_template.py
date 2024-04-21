@@ -49,19 +49,15 @@ def python_text(text='is cool'):
 # Define the path route to '/number/<int:n>'
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_text(n):
-    """
-    Return "n is a number" if n is an integer
-    """
-    return f'{n} is a number'
+    """display “n is a number” only if n is an integer"""
+    return "{:d} is a number".format(n)
 
 
 # Define the path route to '/number_template/<int:n>'
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
-    """
-    Display an HTML page only if n is an integer
-    """
-    return render_template('number.html', number=n)
+    """display a HTML page only if n is an integer"""
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
