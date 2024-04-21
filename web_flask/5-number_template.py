@@ -57,21 +57,9 @@ def number_text(n):
 
 # Define the path route to '/number_template/<int:n>'
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """
-    Return a HTML page displaying the value of n
-    """
-    return f'''
-    <html>
-        <head>
-            <title>Number {n}</title>
-        </head>
-        <body>
-            <h1>{n}</h1>
-        </body>
-    </html>
-    '''
-    return f'{n}'
+def is_a_number_template(n=None):
+    """Render a HTML page"""
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
