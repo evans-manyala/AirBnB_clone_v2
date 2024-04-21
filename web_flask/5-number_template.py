@@ -57,9 +57,11 @@ def number_text(n):
 
 # Define the path route to '/number_template/<int:n>'
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def is_a_number_template(n=None):
-    """Render a HTML page"""
-    return render_template('5-number.html', n=n)
+def number_template(n):
+    """
+    Display an HTML page only if n is an integer
+    """
+    return render_template('number.html', number=n)
 
 
 if __name__ == '__main__':
