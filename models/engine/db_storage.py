@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""New DB Engine"""
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -31,18 +31,19 @@ class DBStorage:
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
         classes = [User, Place, State, City, Amenity, Review]
-        objs = {}
+        objs = dict()
         if cls:
             query = self.__session.query(cls)
-            for obj in query:
+            for obj in query.all:
                 key = '{}.{}'.format(obj.__class__.__name__, obj.id)
                 objs[key] = obj
         else:
-            for cls in classes:
+            query = self.__session.query(cls)
+            for obj in query.all:
                 query = self.__session.query(cls)
                 for obj in query:
-                    key = '{}.{}'.format(obj.__class__.__name__, obj.id)
-                    objs[key] = obj
+                    obj_key = '{}.{}'.format(obj.__class__.__name__, obj.id)
+                    objs[obj_key] = obj
         return objs
 
     def new(self, obj):
